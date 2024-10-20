@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="rosbag" type="record" name="bag_record" output="screen" args="">
+        <param name="use_sim_time" value="true"/>
+    </node>
+</launch>

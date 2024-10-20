@@ -1,0 +1,25 @@
+<launch>
+    <include file="$(find rm_config)/launch/referee.launch"/>
+    <include file="$(find hk_camera)/launch/double_device.launch"/>
+    <arg name="is_red" default="false"/>
+    <arg name="is_game" default="true"/>
+
+    <include file="$(find rm_detector_v8)/launch/armor_detector.launch">
+        <arg name="target_is_red" default="$(arg is_red)"/>
+    </include>
+    <include file="$(find patchworkpp)/launch/demo.launch">
+    </include>
+    <include file="$(find rm_radar)/launch/radar_double_camera.launch">
+        <arg name="target_is_red" default="$(arg is_red)"/>
+        <arg name="is_game" default="$(arg is_game)"/>
+    </include>
+    <include file="$(find rm_tower)/launch/tower.launch">
+        <arg name="target_is_red" default="$(arg is_red)"/>
+    </include>
+
+    <!--    <node pkg="rosbag" type="record" name="bag_record" output="screen"-->
+    <!--          args="/livox/lidar /hk_camera_left/image_raw/compressed /hk_camera_right/image_raw/compressed /rm_referee/game_status /rm_referee/radar_mark /rm_referee/radar_info /rm_referee/game_robot_hp /rm_referee/event_data">-->
+    <!--        <param name="use_sim_time" value="true"/>-->
+    <!--    </node>-->
+
+</launch>

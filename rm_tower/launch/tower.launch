@@ -1,0 +1,10 @@
+<launch>
+    <arg name="target_is_red" value="false"/>
+    <node pkg="nodelet" type="nodelet" name="tower_manager" args="manager" output="screen"/>
+
+    <node pkg="nodelet" type="nodelet" name="rm_tower"
+          args="load rm_tower/RmTower tower_manager" output="screen">
+        <rosparam file="$(find rm_tower)/config/tower.yaml" command="load"/>
+        <param name="target_is_red" value="$(arg target_is_red)"/>
+    </node>
+</launch>

@@ -1,0 +1,2 @@
+uint8 id
+std_msgs/Float32MultiArray position

@@ -1,0 +1,3 @@
+bool warning_dart
+bool warning_flying_slope
+bool ready_double

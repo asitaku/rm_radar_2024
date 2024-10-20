@@ -1,0 +1,9 @@
+<library path="lib/librm_tower">
+    <class name="rm_tower/RmTower"
+           type="rm_tower::RmTower"
+           base_class_type="nodelet::Nodelet">
+        <description>
+            A implementation of rm_tower
+        </description>
+    </class>
+</library>

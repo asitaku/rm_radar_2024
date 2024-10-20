@@ -1,0 +1,9 @@
+<library path="lib/libUI">
+    <class name="rm_radar/UI"
+           type="rm_radar::UI"
+           base_class_type="nodelet::Nodelet">
+        <description>
+            A implementation of UI
+        </description>
+    </class>
+</library>

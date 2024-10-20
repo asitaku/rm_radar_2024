@@ -1,0 +1,54 @@
+<launch>
+
+    <arg name="target_is_red" default="false"/>
+    <arg name="cam_to_world_identity" default="false"/>
+    <node pkg="nodelet" type="nodelet" name="radar_manager_left" args="manager" output="screen"/>
+
+    <node pkg="nodelet" type="nodelet" name="rm_radar_left"
+          args="load rm_radar/Lidar radar_manager_left" output="screen">
+        <rosparam file="$(find rm_radar)/config/camera_left.yaml" command="load" ns="left_camera_proc_config"/>
+        <param name="target_is_red" value="$(arg target_is_red)"/>
+        <param name="is_game" value="$(arg is_game)"/>
+        <param name="camera_name" value="left_camera_proc"/>
+        <param name="img_path" value="$(find rm_radar)/config/left2.png"/>
+        <param name="left_camera" type="bool" value="true"/>
+        <param name="cameraInfo_yaml_file" type="string" value="file:///$(find rm_radar)/config/camera_left.yaml"/>
+        <param name="cam_to_world_identity" value="$(arg cam_to_world_identity)"/>
+        <rosparam file="$(find rm_radar)/config/mouse_callback_config_left.yaml" command="load"/>
+        <!--        <remap from="/galaxy_camera/galaxy_camera/image_raw" to="/galaxy_camera/galaxy_camera_left/image_raw" />-->
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="radar_manager_right" args="manager" output="screen"/>
+
+    <node pkg="nodelet" type="nodelet" name="rm_radar_right"
+          args="load rm_radar/Lidar radar_manager_right" output="screen">
+        <rosparam file="$(find rm_radar)/config/camera_right.yaml" command="load" ns="right_camera_proc_config"/>
+        <param name="target_is_red" value="$(arg target_is_red)"/>
+        <param name="is_game" value="$(arg is_game)"/>
+        <param name="camera_name" value="right_camera_proc"/>
+        <param name="img_path" value="$(find rm_radar)/config/right2.png"/>
+        <param name="left_camera" type="bool" value="false"/>
+        <param name="cameraInfo_yaml_file" type="string" value="file:///$(find rm_radar)/config/camera_right.yaml"/>
+        <param name="cam_to_world_identity" value="$(arg cam_to_world_identity)"/>
+        <rosparam file="$(find rm_radar)/config/mouse_callback_config_right.yaml" command="load"/>
+        <!--        <remap from="/galaxy_camera/galaxy_camera/image_raw" to="/galaxy_camera/galaxy_camera_left/image_raw"/>-->
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="radar_manager_UI" args="manager" output="screen"/>
+    <node pkg="nodelet" type="nodelet" name="UI" args="load rm_radar/UI radar_manager_UI" output="screen">
+        <rosparam file="$(find rm_radar)/config/map.yaml" command="load" ns="map_config"/>
+        <param name="target_is_red" value="$(arg target_is_red)"/>
+    </node>
+
+    <!-- Attention! : When you just want to test Mouse Callback function which is used to get world_to_cam matrix
+                    please ignore include file code down here-->
+    <!--    <include file="$(find rm_detector)/launch/armor_detector.launch"/>-->
+
+    <!--    <include file="$(find rm_vision)/launch/vision_loader.launch"/>-->
+
+    <!-- This launch file is used to armor_detector to detect enemy armor -->
+    <include file="$(find livox_ros_driver)/launch/livox_lidar.launch"/>
+    <!-- Launching livox mid-70 radar, get depth information -->
+
+    <node name="rviz" pkg="rviz" type="rviz" respawn="true" args="-d $(find rm_radar)/config/test.rviz"/>
+</launch>

@@ -1,0 +1,13 @@
+rm_referee:
+  robot_type: radar
+  interactive_data:
+    - name: "radar_to_sentry"
+      config: { delay: 0.04 }
+    - name: "custom_info"
+#  ui:
+#    flash:
+#      - name: "radar_warning"
+#        data:
+#          - { flag: 0, config: { type: "string", start_position: [ 1000, 400 ], size: 15, width: 2, color: "purple", content: "Warning! Dart!" } }
+#          - { flag: 1, config: { type: "string", start_position: [ 1000, 500 ], size: 15, width: 2, color: "purple", content: "Warning! Flying Slope!" } }
+#          - { flag: 2, config: { type: "string", start_position: [ 1000, 600 ], size: 15, width: 2, color: "purple", content: "Ready! Enable Radar Double!" } }

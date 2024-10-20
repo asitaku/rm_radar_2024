@@ -1,0 +1,20 @@
+<launch>
+
+    <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen"/>
+
+    <node pkg="nodelet" type="nodelet" name="rm_radar"
+          args="load rm_radar/Lidar nodelet_manager" output="screen">
+        <param name="camera_name" value="camera_left"/>
+        <rosparam file="$(find rm_radar)/config/camera_left.yaml" command="load" ns="camera_left_config"/>
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="UI"
+          args="load rm_radar/UI nodelet_manager" output="screen">
+        <rosparam file="$(find rm_radar)/config/map.yaml" command="load" ns="UI/map_config"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" respawn="true"
+          args="-d $(find rm_radar)/config/UI.rviz"/>
+
+    <include file="$(find livox_ros_driver)/launch/livox_lidar.launch"/>
+</launch>

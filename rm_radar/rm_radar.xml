@@ -1,0 +1,9 @@
+<library path="lib/librm_radar">
+    <class name="rm_radar/Lidar"
+           type="rm_radar::Lidar"
+           base_class_type="nodelet::Nodelet">
+        <description>
+            A implementation of rm_radar
+        </description>
+    </class>
+</library>

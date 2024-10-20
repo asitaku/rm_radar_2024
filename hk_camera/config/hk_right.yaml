@@ -1,0 +1,23 @@
+image_width: 3072
+image_height: 2048
+camera_name: hk_camera
+left_camera: false
+exposure_value: 12000.0
+gain_value: 23.9
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [ 5305.282253262162, 0, 1573.397849554981, 0, 5306.831749871504, 1031.614827311343, 0, 0, 1 ]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [ -0.02815768028118315, 0.2693213386678557, 0.0008507006240201881, 0.0004651541957502631, 0 ]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [ 5307.9296875, 0, 1573.362639535917, 0, 0, 5307.64306640625, 1031.950296840441, 0, 0, 0, 1, 0 ]
